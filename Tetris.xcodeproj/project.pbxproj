@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EDBB730B243636C600CBBC7F /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = EDBB730A243636C600CBBC7F /* main.c */; };
+		EDBB73132436419D00CBBC7F /* fonctions_essentielles.c in Sources */ = {isa = PBXBuildFile; fileRef = EDBB73122436419D00CBBC7F /* fonctions_essentielles.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,9 @@
 /* Begin PBXFileReference section */
 		EDBB7307243636C600CBBC7F /* Tetris */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tetris; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDBB730A243636C600CBBC7F /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		EDBB73112436419D00CBBC7F /* fonctions_essentielles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fonctions_essentielles.h; sourceTree = "<group>"; };
+		EDBB73122436419D00CBBC7F /* fonctions_essentielles.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = fonctions_essentielles.c; sourceTree = "<group>"; };
+		EDBB7314243642CA00CBBC7F /* global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,9 @@
 			isa = PBXGroup;
 			children = (
 				EDBB730A243636C600CBBC7F /* main.c */,
+				EDBB73112436419D00CBBC7F /* fonctions_essentielles.h */,
+				EDBB73122436419D00CBBC7F /* fonctions_essentielles.c */,
+				EDBB7314243642CA00CBBC7F /* global.h */,
 			);
 			path = Tetris;
 			sourceTree = "<group>";
@@ -120,6 +127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDBB730B243636C600CBBC7F /* main.c in Sources */,
+				EDBB73132436419D00CBBC7F /* fonctions_essentielles.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
