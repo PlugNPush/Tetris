@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EDBB730B243636C600CBBC7F /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = EDBB730A243636C600CBBC7F /* main.c */; };
 		EDBB73132436419D00CBBC7F /* fonctions_essentielles.c in Sources */ = {isa = PBXBuildFile; fileRef = EDBB73122436419D00CBBC7F /* fonctions_essentielles.c */; };
+		EDCA6626244A4DB8005FC721 /* blocks.c in Sources */ = {isa = PBXBuildFile; fileRef = EDCA6625244A4DB8005FC721 /* blocks.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +30,8 @@
 		EDBB73112436419D00CBBC7F /* fonctions_essentielles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fonctions_essentielles.h; sourceTree = "<group>"; };
 		EDBB73122436419D00CBBC7F /* fonctions_essentielles.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = fonctions_essentielles.c; sourceTree = "<group>"; };
 		EDBB7314243642CA00CBBC7F /* global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
+		EDCA6624244A4DB8005FC721 /* blocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = blocks.h; sourceTree = "<group>"; };
+		EDCA6625244A4DB8005FC721 /* blocks.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = blocks.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +68,8 @@
 				EDBB73112436419D00CBBC7F /* fonctions_essentielles.h */,
 				EDBB73122436419D00CBBC7F /* fonctions_essentielles.c */,
 				EDBB7314243642CA00CBBC7F /* global.h */,
+				EDCA6624244A4DB8005FC721 /* blocks.h */,
+				EDCA6625244A4DB8005FC721 /* blocks.c */,
 			);
 			path = Tetris;
 			sourceTree = "<group>";
@@ -126,6 +131,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDCA6626244A4DB8005FC721 /* blocks.c in Sources */,
 				EDBB730B243636C600CBBC7F /* main.c in Sources */,
 				EDBB73132436419D00CBBC7F /* fonctions_essentielles.c in Sources */,
 			);
