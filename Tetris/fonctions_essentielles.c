@@ -33,13 +33,13 @@ void fill_2D_plateau_Carre(int** P, int nb_lig, int nb_col)
     }
     // placer les valeurs 1
 
-    for (i=3;i<nb_lig-3; i++)
-    {
-        for (j=3;j<nb_col-3; j++)
-        {
-            P[i][j]=1;
-        }
-    }
+//    for (i=3;i<nb_lig-3; i++)
+//    {
+//        for (j=3;j<nb_col-3; j++)
+//        {
+//            P[i][j]=1;
+//        }
+//    }
 }
 
 /*------- Remplissage d'un Block (Tableau 2D) avec la forme T  --------*/

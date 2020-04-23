@@ -10,10 +10,11 @@
 #define blocks_h
 
 #include "global.h"
+#include "fonctions_essentielles.h"
 
 typedef struct Block {
     int appartenance;
-    int content[5][5];
+    int** content;
     int size;
 }Block;
 

@@ -21,6 +21,8 @@ void developement() {
 }
 
 void fillBlock(Block* s1, int content[][5]) {
+    s1->content = create_2D_Array(5, 5);
+    fill_2D_plateau_Carre(s1->content, 5, 5);
     int i, j;
     for (i=0; i<5; i++) {
         for (j=0; j<5; j++) {
@@ -267,7 +269,7 @@ Block* getBlocks(int forAppartenance) {
         else {
             stop = 1;
         }
-        
+        diagBlock(s1);
         printBlock(s1);
         blocklist[i] = s1;
         i++;
