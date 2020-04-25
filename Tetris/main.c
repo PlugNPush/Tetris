@@ -24,7 +24,18 @@ void initGame(int*** gamepad, int* lines, int* col, int* gamestyle) {
     //TODO: Generer les tableaux circulaires, losanges et triangulaires à partir d'ici en insérant des -1 sur les bordures externes
 }
 
+int verifBlock(Block block, int** gamepad, int lines, int col, int x, int y) {
+    //TODO: Vérifier que le block peut être placé
+    
+    //MARK: SPOILER - Pour simplifier le processus, on décale les coordonnes du block par sa taille pour retrouver un placement 0,0 et faciliter les vérifications.
+    //MARK: La fonction de placement est déjà au bon format, inutile d'enregistrer la conversion 0,0.
+    
+    return 0;
+}
+
 void game(Blocks blocks, int*** gamepad, int lines, int col, int gamestyle) {
+    // TODO: La fonction. Récursive.
+    // MARK: Demander la saisie, ne pas oublier de convertir en chiffre partant de 0, vérifier et placer, ou répéter. Inclure le random pour choisir 3 blocs dans la liste.
     
 }
 
