@@ -16,7 +16,7 @@ void fill_2D_plateau_Carre(int** P, int nb_lig, int nb_col);
 void fill_Forme_T(int** P, int nb_lig, int nb_col);
 void display_2D_array(int** P, int nb_lig, int nb_col);
 void display_ascii(int** P, int nb_lig, int nb_col);
-void depose_block(int** P, int nb_lig, int nb_col, int** B, int Px, int Py, int nb_lig_B, int nb_col_B);
+void depose_block(int** P, int nb_lig, int nb_col, int** B, int Px, int Py, int size);
 void getDim2Darray(int *l, int*c);
 void free_2D_array(int **A, int l, int c);
 

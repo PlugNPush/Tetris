@@ -71,11 +71,28 @@ void fill_Forme_T(int** P, int nb_lig, int nb_col)
 void display_2D_array(int** P, int nb_lig, int nb_col)
 {
     int i, j;
+    printf("   ");
+    for (j=0; j<nb_col; j++) {
+        printf("%c ", j+65);
+    }
+    printf("\n");
+    
     for (i=0;i<nb_lig; i++)
     {
+        if (i+1 < 10) {
+            printf("%d  ", i+1);
+        } else {
+            printf("%d ", i+1);
+        }
+        
         for (j=0;j<nb_col; j++)
         {
-            printf("%3d", P[i][j]) ;
+            if (P[i][j] == OCCUPE){
+                printf("■ ");
+            } else {
+                printf("* ");
+            }
+            //printf("%3d", P[i][j]) ;
         }
         printf("\n");
     }
@@ -115,8 +132,11 @@ void display_ascii(int** P, int nb_lig, int nb_col)
 
 /*------- Déposer un bloc B sur le plateau P à une position (Px,Py) 2D --------*/
 
-void depose_block(int** P, int nb_lig, int nb_col, int** B, int Px, int Py, int nb_lig_B, int nb_col_B)
+void depose_block(int** P, int nb_lig, int nb_col, int** B, int Px, int Py, int size)
 {
+    int nb_lig_B = size;
+    int nb_col_B = size;
+    
     int i=0;
     int j;
     while(i<nb_lig_B)
@@ -170,7 +190,7 @@ int main_copy1()
     fill_Forme_T(Block, MAX_BLOCK, MAX_BLOCK);
     //display_2D_array(Block, MAX_BLOCK, MAX_BLOCK);
     // placer le bloc T à la position (13, 6)
-    depose_block(mon_plateau, L, C, Block, 13, 6, MAX_BLOCK, MAX_BLOCK);
+    depose_block(mon_plateau, L, C, Block, 13, 6, MAX_BLOCK);
     //display_2D_array(mon_plateau, 15, 21);
    display_ascii(mon_plateau, L, C);
     free_2D_array(mon_plateau,L,C);

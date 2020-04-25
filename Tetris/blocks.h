@@ -18,7 +18,15 @@ typedef struct Block {
     int size;
 }Block;
 
-Block* getBlocks(int forAppartenance);
+typedef struct Blocks {
+    Block* blocks;
+    int size;
+}Blocks;
+
+Blocks getBlocks(int forAppartenance);
+Blocks getStandardizedBlocks(int forAppartenance);
+Block convertBlock(Block block);
+int getSize(int forAppartenance);
 void printBlock(Block block);
 void fillBlock(Block* s1, int content[][5]);
 

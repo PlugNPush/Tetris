@@ -10,6 +10,10 @@
 #define global_h
 #define MAX_BLOCK 5
 
+#define INJOUABLE -1
+#define LIBRE 0
+#define OCCUPE 1
+
 #include <stdio.h>
 #include <stdlib.h>
 // #include <math.h>

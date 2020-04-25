@@ -68,8 +68,60 @@ void printBlock(Block block) {
     printf((size == 1) ? "-\n\n" : (size == 2) ? "- -\n\n" : (size == 3) ? "- - -\n\n" : (size == 4) ? "- - - -\n\n" : "- - - - -\n\n");
 }
 
-Block* getBlocks(int forAppartenance) {
-    Block* blocklist = (Block*) malloc(sizeof(Block) * 100);
+Block convertBlock(Block block) {
+    Block s1;
+    s1.size = block.size;
+    s1.appartenance = block.appartenance;
+    s1.content = create_2D_Array(block.size, block.size);
+    //printf("Size : %d", block.size);
+    int i, j, k;
+    int size = block.size;
+    int startpoint = 5 - size;
+    int endpoint = 5;
+
+    for (i = startpoint, k = 0; i < endpoint ; i++, k++) {
+        for (j=0; j < size; j++) {
+            s1.content[i-startpoint][j] = block.content[i][j];
+        }
+    }
+    
+    return s1;
+    
+}
+
+Blocks getStandardizedBlocks(int forAppartenance) {
+    Blocks blocklist = getBlocks(forAppartenance);
+    Blocks blocks;
+    blocks.size = blocklist.size;
+    blocks.blocks = (Block*) malloc(sizeof(Block) * blocks.size);
+    int i;
+    for (i=0; i<blocks.size; i++) {
+        blocks.blocks[i] = convertBlock(blocklist.blocks[i]);
+    }
+    
+    return blocks;
+}
+
+int getSize(int forAppartenance) {
+    int size;
+    if (forAppartenance == 0) {
+        size = 17;
+    } else if (forAppartenance == 1) {
+        size = 29;
+    } else if (forAppartenance == 2) {
+        size = 31;
+    } else {
+        size = 28;
+    }
+    
+    size = size + 2;
+    return size;
+}
+
+Blocks getBlocks(int forAppartenance) {
+    Blocks blocklist;
+    blocklist.size = getSize(forAppartenance);
+    blocklist.blocks = (Block*) malloc(sizeof(Block) * blocklist.size);
     int i = -1;
     int stop = 0;
 
@@ -271,7 +323,7 @@ Block* getBlocks(int forAppartenance) {
         }
         diagBlock(s1);
         printBlock(s1);
-        blocklist[i] = s1;
+        blocklist.blocks[i] = s1;
         i++;
     }
     
@@ -405,7 +457,7 @@ Block* getBlocks(int forAppartenance) {
             }
             
             printBlock(s1);
-            blocklist[i] = s1;
+            blocklist.blocks[i] = s1;
             i++;
         }
     }
@@ -556,7 +608,7 @@ Block* getBlocks(int forAppartenance) {
             }
             
             printBlock(s1);
-            blocklist[i] = s1;
+            blocklist.blocks[i] = s1;
             i++;
         }
     }
@@ -678,7 +730,7 @@ Block* getBlocks(int forAppartenance) {
             }
             
             printBlock(s1);
-            blocklist[i] = s1;
+            blocklist.blocks[i] = s1;
             i++;
         }
     }
