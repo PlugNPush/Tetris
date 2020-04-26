@@ -24,6 +24,52 @@ void initGame(int*** gamepad, int* lines, int* col, int* gamestyle) {
     //TODO: Generer les tableaux circulaires, losanges et triangulaires à partir d'ici en insérant des -1 sur les bordures externes
 }
 
+int etat_ligne(int** gamepad, int col, int ligne) {
+    int i;
+    for (i=0; i<col; i++) {
+        if (gamepad[ligne][i] == LIBRE) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int etat_colonne(int** gamepad, int lignes, int colonne) {
+    int i;
+    for (i=0; i<lignes; i++) {
+        if (gamepad[i][colonne] == LIBRE) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+void calcul_score(int* score, int lignes, int col, int type) {
+    if (type == COLONNE) {
+        *score += col;
+    } else {
+        *score += lignes;
+    }
+}
+
+void annuler_ligne(int*** gamepad, int lignes, int col, int ligne) {
+    int i;
+    for (i=0; i<col; i++) {
+        if (*gamepad[ligne][i] == OCCUPE) {
+            gamepad[ligne][i] = LIBRE;
+        }
+    }
+}
+
+void annuler_colonne(int*** gamepad, int lignes, int col, int colonne) {
+    int i;
+    for (i=0; i<lignes; i++) {
+        if (*gamepad[i][colonne] == OCCUPE) {
+            gamepad[i][colonne] = LIBRE;
+        }
+    }
+}
+
 int verifBlock(Block block, int** gamepad, int lines, int col, int x, int y) {
     //TODO: Vérifier que le block peut être placé
     
@@ -33,7 +79,7 @@ int verifBlock(Block block, int** gamepad, int lines, int col, int x, int y) {
     return 0;
 }
 
-void game(Blocks blocks, int*** gamepad, int lines, int col, int gamestyle) {
+void game(Blocks blocks, int*** gamepad, int lines, int col, int gamestyle, int score) {
     // TODO: La fonction. Récursive.
     // MARK: Demander la saisie, ne pas oublier de convertir en chiffre partant de 0, vérifier et placer, ou répéter. Inclure le random pour choisir 3 blocs dans la liste.
     

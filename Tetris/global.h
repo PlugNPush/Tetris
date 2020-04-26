@@ -14,6 +14,9 @@
 #define LIBRE 0
 #define OCCUPE 1
 
+#define LIGNE 0
+#define COLONNE 1
+
 #include <stdio.h>
 #include <stdlib.h>
 // #include <math.h>
