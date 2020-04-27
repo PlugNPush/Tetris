@@ -18,7 +18,7 @@ void initGame(int*** gamepad, int* lines, int* col, int* gamestyle, int* pickers
     }
     
     while (*pickerstyle != 0 && *pickerstyle != 1) {
-        printf("Quel style de jeu voulez-vous ? (0 - Show all blocks, 1 - Select 3 random blocks) ? ");
+        printf("Quel style de jeu voulez-vous ? (0 - Montrez tout les blocks, 1 - Montrez 3 blocks aléatoires) ? ");
         scanf("%d", pickerstyle);
     }
     
