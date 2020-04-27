@@ -8,12 +8,19 @@
 
 #include "fonctions_essentielles.h"
 #include "blocks.h"
+#include "global.h"
 
-void initGame(int*** gamepad, int* lines, int* col, int* gamestyle) {
+void initGame(int*** gamepad, int* lines, int* col, int* gamestyle, int* pickerstyle) {
     *gamestyle = 0;
+    *pickerstyle = -1;
     while (*gamestyle != 1 && *gamestyle != 2 && *gamestyle != 3) {
         printf("What style do you want (1 - Circle, 2 - Losange, 3 - Triangle) ? ");
         scanf("%d", gamestyle);
+    }
+    
+    while (*pickerstyle != 0 && *pickerstyle != 1) {
+        printf("What style do you want (0 - Show all blocks, 1 - Select 3 random blocks) ? ");
+        scanf("%d", pickerstyle);
     }
     
     
@@ -76,12 +83,97 @@ int verifBlock(Block block, int** gamepad, int lines, int col, int x, int y) {
     //MARK: SPOILER - Pour simplifier le processus, on décale les coordonnes du block par sa taille pour retrouver un placement 0,0 et faciliter les vérifications.
     //MARK: La fonction de placement est déjà au bon format, inutile d'enregistrer la conversion 0,0.
     
-    return 0;
+    return 1;
 }
 
-void game(Blocks blocks, int*** gamepad, int lines, int col, int gamestyle, int score) {
+void game(Blocks blocks, int*** gamepad, int lines, int col, int gamestyle, int pickerstyle, int* score, int attempts) {
     // TODO: La fonction. Récursive.
     // MARK: Demander la saisie, ne pas oublier de convertir en chiffre partant de 0, vérifier et placer, ou répéter. Inclure le random pour choisir 3 blocs dans la liste.
+    
+    printf("\n\n\n");
+    
+    display_2D_array(*gamepad, lines, col);
+    
+    if (attempts >= 3) {
+        printf("Fin de la partie ! Score : %d\n", *score);
+        return;
+    }
+    
+    int selected = 0;
+    int select = 0;
+    Block selector;
+    selector.appartenance = 0;
+    selector.size = 0;
+    int content[5][5] = {
+        {0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0},
+        {1, 0, 0, 0, 0}
+    };
+    fillBlock(&selector, content);
+    
+    while (selected == 0) {
+    
+        if (pickerstyle == 0) {
+            printBlocks(blocks);
+            printf("Choisissez un bloc parmis tous ceux proposés.");
+            scanf("%d", &selected);
+            if (selected < blocks.size) {
+                selected = 1;
+                selector = blocks.blocks[select];
+            }
+        } else {
+            int r1 = rand() % blocks.size;
+            int r2 = rand() % blocks.size;
+            int r3 = rand() % blocks.size;
+                
+            printBlocker(blocks.blocks[r1]);
+            printf("^ Bloc n°1 ^\n\n");
+            printBlocker(blocks.blocks[r2]);
+            printf("^ Bloc n°2 ^\n\n");
+            printBlocker(blocks.blocks[r3]);
+            printf("^ Bloc n°3 ^\n\n");
+        
+            int select;
+            printf("Choisissez un bloc parmis tous ceux proposés.\n");
+            scanf("%d", &select);
+            if (select == 1) {
+                selected = 1;
+                selector = blocks.blocks[r1];
+            } else if (select == 2) {
+                selected = 1;
+                selector = blocks.blocks[r2];
+            } else if (select == 3) {
+                selected = 1;
+                selector = blocks.blocks[r3];
+            }
+        }
+    }
+    
+    display_2D_array(*gamepad, lines, col);
+    
+    char sca;
+    int scb;
+    fflush(stdin);
+    printf("Veuillez saisir les coordonnées de placement du block (lettre): ");
+    scanf("%c", &sca);
+    fflush(stdin);
+    printf("Veuillez saisir les coordonnées de placement du block (nombre): ");
+    scanf("%d", &scb);
+    fflush(stdin);
+    
+    int x, y;
+    
+    x = sca-65;
+    y = scb - 1;
+    
+    if (verifBlock(selector, *gamepad, lines, col, x, y) == 1) {
+        depose_block(*gamepad, lines, col, selector.content, x, y, selector.size);
+        game(blocks, gamepad, lines, col, gamestyle, pickerstyle, score, attempts);
+    }
+    
+    
     
 }
 
@@ -91,17 +183,16 @@ int main(int argc, const char * argv[]) {
     int** gamepad = NULL;
     int gamestyle;
     int lines, col;
+    int score = 0;
+    int pickerstyle;
+    
+    srand((unsigned int)time(NULL));
 
-    initGame(&gamepad, &lines, &col, &gamestyle);
+    initGame(&gamepad, &lines, &col, &gamestyle, &pickerstyle);
     
     Blocks blocks = getStandardizedBlocks(gamestyle);
 
-    display_2D_array(gamepad, lines, col);
-
-    depose_block(gamepad, lines, col, blocks.blocks[5].content, 4, 4, blocks.blocks[5].size);
-
-    printf("\n\n");
-    display_2D_array(gamepad, lines, col);
+    game(blocks, &gamepad, lines, col, gamestyle, pickerstyle, &score, 0);
     
     free_2D_array(gamepad, lines, col);
     

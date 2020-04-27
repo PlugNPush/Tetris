@@ -29,5 +29,7 @@ Block convertBlock(Block block);
 int getSize(int forAppartenance);
 void printBlock(Block block);
 void fillBlock(Block* s1, int content[][5]);
+void printBlocks(Blocks blocks);
+void printBlocker(Block block);
 
 #endif /* blocks_h */

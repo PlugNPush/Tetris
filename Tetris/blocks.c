@@ -49,6 +49,7 @@ int appartenanceSize(Block block) {
 }
 
 void printBlock(Block block) {
+    obsoleted();
     int i, j;
     int size = block.size;
     int startpoint = 5 - size;
@@ -66,6 +67,32 @@ void printBlock(Block block) {
     }
     
     printf((size == 1) ? "-\n\n" : (size == 2) ? "- -\n\n" : (size == 3) ? "- - -\n\n" : (size == 4) ? "- - - -\n\n" : "- - - - -\n\n");
+}
+
+void printBlocker(Block block) {
+    int i, j;
+    int size = block.size;
+    printf((size == 1) ? "-\n" : (size == 2) ? "- -\n" : (size == 3) ? "- - -\n" : (size == 4) ? "- - - -\n" : "- - - - -\n");
+    for (i = 0; i < size ; i++) {
+        for (j=0; j < size; j++) {
+            if (block.content[i][j] == 1) {
+                printf("x ");
+            } else {
+                printf("  ");
+            }
+        }
+        printf("\n");
+    }
+    
+    printf((size == 1) ? "-\n\n" : (size == 2) ? "- -\n\n" : (size == 3) ? "- - -\n\n" : (size == 4) ? "- - - -\n\n" : "- - - - -\n\n");
+}
+
+void printBlocks(Blocks blocks) {
+    int i;
+    for (i=0; i<blocks.size; i++) {
+        printBlocker(blocks.blocks[i]);
+        printf("^ Bloc n°%d ^\n\n", i);
+    }
 }
 
 Block convertBlock(Block block) {
