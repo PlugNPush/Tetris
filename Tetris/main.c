@@ -6,20 +6,19 @@
 //  Copyright © 2020 PlugN. All rights reserved.
 //
 
-#include "fonctions_essentielles.h"
-#include "blocks.h"
-#include "global.h"
+#include "projet1c.h"
+
 
 void initGame(int*** gamepad, int* lines, int* col, int* gamestyle, int* pickerstyle) {
     *gamestyle = 0;
     *pickerstyle = -1;
     while (*gamestyle != 1 && *gamestyle != 2 && *gamestyle != 3) {
-        printf("What style do you want (1 - Circle, 2 - Losange, 3 - Triangle) ? ");
+        printf("Quel type de terrain voulez-vous ? (1 - Circle, 2 - Losange, 3 - Triangle) ? ");
         scanf("%d", gamestyle);
     }
     
     while (*pickerstyle != 0 && *pickerstyle != 1) {
-        printf("What style do you want (0 - Show all blocks, 1 - Select 3 random blocks) ? ");
+        printf("Quel style de jeu voulez-vous ? (0 - Show all blocks, 1 - Select 3 random blocks) ? ");
         scanf("%d", pickerstyle);
     }
     
@@ -77,10 +76,8 @@ void annuler_colonne(int*** gamepad, int lignes, int col, int colonne) {
 }
 
 int verifBlock(Block block, int** gamepad, int lines, int col, int x, int y) {
-    //TODO: Vérifier que le block peut être placé
     
     // Ré-ajustement des coordonnées pour simplifier la vérification
-    
     y = y - block.size + 1;
     
     // Vérifications de dépassement
@@ -112,7 +109,7 @@ int verifBlock(Block block, int** gamepad, int lines, int col, int x, int y) {
     }
     
     y = y + block.size - 1;
-    //Failsafe
+    //Failsafe  --> vérification suplémentaire 
     while(i<block.size)
        {
            j=0;
