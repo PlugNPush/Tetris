@@ -28,7 +28,6 @@ void initGame(int*** gamepad, int* lines, int* col, int* gamestyle, int* pickers
     *gamepad = create_2D_Array(*lines, *col);
     fill_2D_plateau_Carre(*gamepad, *lines, *col);
     
-    //TODO: Generer les tableaux circulaires, losanges et triangulaires à partir d'ici en insérant des -1 sur les bordures externes
 }
 
 int etat_ligne(int** gamepad, int col, int ligne) {
@@ -80,24 +79,69 @@ void annuler_colonne(int*** gamepad, int lignes, int col, int colonne) {
 int verifBlock(Block block, int** gamepad, int lines, int col, int x, int y) {
     //TODO: Vérifier que le block peut être placé
     
-    //MARK: SPOILER - Pour simplifier le processus, on décale les coordonnes du block par sa taille pour retrouver un placement 0,0 et faciliter les vérifications.
-    //MARK: La fonction de placement est déjà au bon format, inutile d'enregistrer la conversion 0,0.
+    // Ré-ajustement des coordonnées pour simplifier la vérification
+    
+    y = y - block.size + 1;
+    
+    // Vérifications de dépassement
+    if (x < 0) {
+        printf("DA");
+        return 0;
+    } else if (y < 0) {
+        printf("DB");
+        return 0;
+    } else if (x + block.size > lines) {
+        printf("DC");
+        return 0;
+    } else if (y + block.size > col) {
+        printf("DD");
+        return 0;
+    }
+    
+    // Vérifications superpositions et sorties
+    int i, j;
+    for (i=0;i<block.size; i++)
+    {
+        for (j=0;j<block.size; j++)
+        {
+            if (gamepad[x+i][y+j] == -1 || (gamepad[x+i][y+j] == 1 && block.content[i][j] == 1)) {
+                printf("ERROR ON x = %d, y = %d i = %d j = %d", x, y, i, j);
+                return 0;
+            }
+        }
+    }
+    
+    y = y + block.size - 1;
+    //Failsafe
+    while(i<block.size)
+       {
+           j=0;
+           while(j<block.size)
+           {
+               if (x-i < 0) {
+                   return 0;
+               } else if (y+j > col) {
+                   return 0;
+               } else if (block.size-i-1 < 0) {
+                   return 0;
+               } else if (block.size-j-1 < 0) {
+                   return 0;
+               }
+               j++;
+           }
+           i++;
+       }
     
     return 1;
 }
 
-void game(Blocks blocks, int*** gamepad, int lines, int col, int gamestyle, int pickerstyle, int* score, int attempts) {
-    // TODO: La fonction. Récursive.
-    // MARK: Demander la saisie, ne pas oublier de convertir en chiffre partant de 0, vérifier et placer, ou répéter. Inclure le random pour choisir 3 blocs dans la liste.
+void game(Blocks blocks, int*** gamepad, int lines, int col, int gamestyle, int pickerstyle, int* score) {
     
     printf("\n\n\n");
     
-    display_2D_array(*gamepad, lines, col);
+    int attempts = 0;
     
-    if (attempts >= 3) {
-        printf("Fin de la partie ! Score : %d\n", *score);
-        return;
-    }
+    display_2D_array(*gamepad, lines, col);
     
     int selected = 0;
     int select = 0;
@@ -153,24 +197,38 @@ void game(Blocks blocks, int*** gamepad, int lines, int col, int gamestyle, int 
     
     display_2D_array(*gamepad, lines, col);
     
-    char sca;
-    int scb;
-    fflush(stdin);
-    printf("Veuillez saisir les coordonnées de placement du block (lettre): ");
-    scanf("%c", &sca);
-    fflush(stdin);
-    printf("Veuillez saisir les coordonnées de placement du block (nombre): ");
-    scanf("%d", &scb);
-    fflush(stdin);
+    int round = 0;
     
-    int x, y;
+    while (round == 0) {
     
-    x = sca-65;
-    y = scb - 1;
-    
-    if (verifBlock(selector, *gamepad, lines, col, x, y) == 1) {
-        depose_block(*gamepad, lines, col, selector.content, x, y, selector.size);
-        game(blocks, gamepad, lines, col, gamestyle, pickerstyle, score, attempts);
+        char sca;
+        int scb;
+        fflush(stdin);
+        printf("Veuillez saisir les coordonnées de placement du block (lettre): ");
+        scanf("%c", &sca);
+        fflush(stdin);
+        printf("Veuillez saisir les coordonnées de placement du block (nombre): ");
+        scanf("%d", &scb);
+        fflush(stdin);
+        
+        int x, y;
+        
+        x = sca-65;
+        y = scb - 1;
+        
+        if (verifBlock(selector, *gamepad, lines, col, x, y) == 1) {
+            depose_block(*gamepad, lines, col, selector.content, x, y, selector.size);
+            round = 1;
+            game(blocks, gamepad, lines, col, gamestyle, pickerstyle, score);
+        } else {
+            attempts++;
+            printf("Vous ne pouvez pas jouer ici !\n");
+            
+            if (attempts >= 3) {
+                printf("Fin de la partie ! Score : %d\n", *score);
+                return;
+            }
+        }
     }
     
     
@@ -192,7 +250,7 @@ int main(int argc, const char * argv[]) {
     
     Blocks blocks = getStandardizedBlocks(gamestyle);
 
-    game(blocks, &gamepad, lines, col, gamestyle, pickerstyle, &score, 0);
+    game(blocks, &gamepad, lines, col, gamestyle, pickerstyle, &score);
     
     free_2D_array(gamepad, lines, col);
     
