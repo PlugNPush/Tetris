@@ -136,6 +136,20 @@ void game(Blocks blocks, int*** gamepad, int lines, int col, int gamestyle, int 
     
     printf("\n\n\n");
     
+    int i, j;
+    for (i=0;i<lines; i++)
+    {
+        for (j=0;j<col; j++)
+        {
+            if (etat_ligne(*gamepad, col, i) == 1) {
+                annuler_ligne(gamepad, lines, col, i);
+            }
+            if (etat_colonne(*gamepad, lines, j) == 1) {
+                annuler_colonne(gamepad, lines, col, j);
+            }
+        }
+    }
+    
     int attempts = 0;
     
     display_2D_array(*gamepad, lines, col);
