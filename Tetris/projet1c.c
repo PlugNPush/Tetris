@@ -295,8 +295,7 @@ Blocks getBlocks(int forAppartenance) {
         else {
             stop = 1;
         }
-        diagBlock(s1);
-        printBlock(s1);
+        
         blocklist.blocks[i] = s1;
         i++;
     }
@@ -430,7 +429,6 @@ Blocks getBlocks(int forAppartenance) {
                 stop = 1;
             }
             
-            printBlock(s1);
             blocklist.blocks[i] = s1;
             i++;
         }
@@ -581,7 +579,6 @@ Blocks getBlocks(int forAppartenance) {
                 stop = 1;
             }
             
-            printBlock(s1);
             blocklist.blocks[i] = s1;
             i++;
         }
@@ -703,7 +700,6 @@ Blocks getBlocks(int forAppartenance) {
                 stop = 1;
             }
             
-            printBlock(s1);
             blocklist.blocks[i] = s1;
             i++;
         }
