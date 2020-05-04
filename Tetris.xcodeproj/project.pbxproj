@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED50FE04245B49C90011B195 /* projet1c.c in Sources */ = {isa = PBXBuildFile; fileRef = ED50FE03245B49C90011B195 /* projet1c.c */; };
 		EDBB730B243636C600CBBC7F /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = EDBB730A243636C600CBBC7F /* main.c */; };
-		EDBB73132436419D00CBBC7F /* fonctions_essentielles.c in Sources */ = {isa = PBXBuildFile; fileRef = EDBB73122436419D00CBBC7F /* fonctions_essentielles.c */; };
-		EDCA6626244A4DB8005FC721 /* blocks.c in Sources */ = {isa = PBXBuildFile; fileRef = EDCA6625244A4DB8005FC721 /* blocks.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,13 +24,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		ED50FE02245B49C80011B195 /* projet1c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = projet1c.h; sourceTree = "<group>"; };
+		ED50FE03245B49C90011B195 /* projet1c.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = projet1c.c; sourceTree = "<group>"; };
 		EDBB7307243636C600CBBC7F /* Tetris */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tetris; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDBB730A243636C600CBBC7F /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		EDBB73112436419D00CBBC7F /* fonctions_essentielles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fonctions_essentielles.h; sourceTree = "<group>"; };
-		EDBB73122436419D00CBBC7F /* fonctions_essentielles.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = fonctions_essentielles.c; sourceTree = "<group>"; };
-		EDBB7314243642CA00CBBC7F /* global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
-		EDCA6624244A4DB8005FC721 /* blocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = blocks.h; sourceTree = "<group>"; };
-		EDCA6625244A4DB8005FC721 /* blocks.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = blocks.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,11 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				EDBB730A243636C600CBBC7F /* main.c */,
-				EDBB73112436419D00CBBC7F /* fonctions_essentielles.h */,
-				EDBB73122436419D00CBBC7F /* fonctions_essentielles.c */,
-				EDBB7314243642CA00CBBC7F /* global.h */,
-				EDCA6624244A4DB8005FC721 /* blocks.h */,
-				EDCA6625244A4DB8005FC721 /* blocks.c */,
+				ED50FE03245B49C90011B195 /* projet1c.c */,
+				ED50FE02245B49C80011B195 /* projet1c.h */,
 			);
 			path = Tetris;
 			sourceTree = "<group>";
@@ -131,9 +124,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDCA6626244A4DB8005FC721 /* blocks.c in Sources */,
 				EDBB730B243636C600CBBC7F /* main.c in Sources */,
-				EDBB73132436419D00CBBC7F /* fonctions_essentielles.c in Sources */,
+				ED50FE04245B49C90011B195 /* projet1c.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

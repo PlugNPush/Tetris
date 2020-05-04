@@ -709,15 +709,6 @@ Blocks getBlocks(int forAppartenance) {
 }
 
 
-
-
-
-
-
-
-
-
-
 //-----------------------Fonction essentiels à partir de moodle---------------------------------------//
 
 
